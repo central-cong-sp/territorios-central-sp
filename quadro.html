@@ -6,164 +6,227 @@
 <title>Quadro de Anuncios - Congregacao Central Santana de Parnaiba SP 40600</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#222;display:flex;flex-direction:column;min-height:100vh;}
-header{background:#1565c0;color:#fff;padding:14px 24px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
-header h1{font-size:1.1rem;flex:1;}
-header a{color:rgba(255,255,255,.8);font-size:.82rem;text-decoration:none;border:1px solid rgba(255,255,255,.4);padding:4px 10px;border-radius:5px;}
-header a:hover{background:rgba(255,255,255,.15);}
-.toolbar{background:#1976d2;padding:10px 20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
-.toolbar button{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;padding:7px 14px;border-radius:6px;cursor:pointer;font-size:.85rem;transition:background .15s;}
-.toolbar button:hover:not(:disabled){background:rgba(255,255,255,.28);}
-.toolbar button:disabled{opacity:.4;cursor:not-allowed;}
-.toolbar .titulo{color:#fff;font-size:.9rem;font-weight:600;flex:1;text-align:center;}
-.toolbar .cont{color:rgba(255,255,255,.75);font-size:.8rem;}
-.main{flex:1;display:flex;flex-direction:column;padding:16px;gap:14px;}
-.cfg-box{background:#fff;border-radius:8px;padding:18px 20px;box-shadow:0 1px 4px rgba(0,0,0,.09);}
-.cfg-box h2{font-size:1rem;color:#1565c0;margin-bottom:10px;}
-.cfg-box p{font-size:.83rem;color:#555;margin-bottom:10px;line-height:1.5;}
-.cfg-box input{width:100%;border:1px solid #ddd;border-radius:6px;padding:8px 11px;font-size:.87rem;margin-bottom:8px;}
-.cfg-box .row{display:flex;gap:8px;flex-wrap:wrap;}
-.cfg-box .row button{padding:8px 16px;border:none;border-radius:6px;cursor:pointer;font-size:.86rem;}
-.b-prim{background:#1565c0;color:#fff;}.b-prim:hover{background:#0d47a1;}
-.b-sec{background:#eee;color:#333;}.b-sec:hover{background:#ddd;}
-.lista-box{background:#fff;border-radius:8px;padding:16px 20px;box-shadow:0 1px 4px rgba(0,0,0,.09);}
-.lista-box h2{font-size:1rem;color:#1565c0;margin-bottom:12px;}
-.lista{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;}
-.item{border:1px solid #e0e0e0;border-radius:7px;padding:12px;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:10px;}
-.item:hover{border-color:#1565c0;background:#e3f2fd;}
-.item.ativo{border-color:#1565c0;background:#e3f2fd;font-weight:600;}
-.item .ico{font-size:1.5rem;flex-shrink:0;}
-.item .info{min-width:0;}
-.item .nome{font-size:.84rem;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.item .sub{font-size:.73rem;color:#888;margin-top:2px;}
-.viewer-box{background:#fff;border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,.09);overflow:hidden;flex:1;}
-.viewer-box iframe{width:100%;height:80vh;border:none;display:block;}
-.empty{text-align:center;padding:60px 20px;color:#aaa;}
-.empty .ic{font-size:3rem;margin-bottom:10px;}
-.tag-drive{display:inline-block;background:#e8f5e9;color:#2e7d32;font-size:.72rem;padding:2px 7px;border-radius:8px;margin-top:3px;}
-.av{background:#fff9c4;border-left:4px solid #f9a825;padding:10px 14px;border-radius:4px;font-size:.84rem;margin-bottom:12px;}
-#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#1565c0;color:#fff;padding:10px 20px;border-radius:8px;font-size:.87rem;display:none;z-index:9999;box-shadow:0 3px 12px rgba(0,0,0,.2);}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#222;display:flex;flex-direction:column;height:100vh;overflow:hidden;}
+header{background:#1565c0;color:#fff;padding:12px 20px;display:flex;align-items:center;gap:12px;flex-shrink:0;flex-wrap:wrap;}
+header h1{font-size:1.05rem;flex:1;}
+header a{color:rgba(255,255,255,.8);font-size:.8rem;text-decoration:none;border:1px solid rgba(255,255,255,.35);padding:4px 10px;border-radius:5px;}
+header a:hover{background:rgba(255,255,255,.18);}
+.tabs{background:#1976d2;display:flex;gap:0;flex-shrink:0;}
+.tab{background:none;border:none;color:rgba(255,255,255,.7);padding:9px 18px;cursor:pointer;font-size:.85rem;border-bottom:3px solid transparent;transition:all .15s;}
+.tab.on,.tab:hover{color:#fff;border-bottom-color:#90caf9;}
+.content{flex:1;overflow:hidden;display:flex;flex-direction:column;}
+/* Vista pasta (iframe do Drive) */
+#vistaDir{flex:1;overflow:hidden;}
+#vistaDir iframe{width:100%;height:100%;border:none;display:block;}
+/* Vista PDF individual */
+#vistaPDF{flex:1;overflow:hidden;display:none;flex-direction:column;}
+#vistaPDF .pdf-toolbar{background:#37474f;color:#fff;padding:8px 16px;display:flex;align-items:center;gap:10px;flex-shrink:0;}
+#vistaPDF .pdf-toolbar span{flex:1;font-size:.87rem;}
+#vistaPDF .pdf-toolbar button{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;padding:5px 12px;border-radius:5px;cursor:pointer;font-size:.82rem;}
+#vistaPDF .pdf-toolbar button:hover{background:rgba(255,255,255,.25);}
+#vistaPDF iframe{flex:1;border:none;}
+/* Lista de PDFs fixos */
+#vistaLista{flex:1;overflow-y:auto;display:none;padding:16px;}
+.av{background:#fff9c4;border-left:4px solid #f9a825;padding:10px 14px;border-radius:5px;font-size:.83rem;margin-bottom:14px;}
+.lista-pdfs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;}
+.pdf-item{background:#fff;border:1px solid #ddd;border-radius:7px;padding:13px;cursor:pointer;display:flex;align-items:center;gap:10px;transition:all .15s;}
+.pdf-item:hover{border-color:#1565c0;background:#e3f2fd;}
+.pdf-item .ico{font-size:1.8rem;flex-shrink:0;}
+.pdf-item .info .nome{font-size:.85rem;font-weight:500;}
+.pdf-item .info .sub{font-size:.72rem;color:#888;margin-top:2px;}
+.pdf-item .del{margin-left:auto;color:#ccc;cursor:pointer;font-size:1.1rem;padding:2px 5px;}
+.pdf-item .del:hover{color:#e53935;}
+/* Formulario adicionar PDF */
+.form-add{background:#fff;border-radius:8px;padding:16px 18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.09);}
+.form-add h3{font-size:.95rem;color:#1565c0;margin-bottom:10px;}
+.form-add p{font-size:.81rem;color:#666;margin-bottom:10px;line-height:1.55;}
+.form-add input{width:100%;border:1px solid #ddd;border-radius:6px;padding:7px 10px;font-size:.85rem;margin-bottom:7px;}
+.form-add .row{display:flex;gap:8px;}
+.form-add .row button{padding:7px 14px;border:none;border-radius:6px;cursor:pointer;font-size:.84rem;}
+.bp{background:#1565c0;color:#fff;}.bp:hover{background:#0d47a1;}
+.bs{background:#eee;color:#444;}.bs:hover{background:#ddd;}
+/* Navegacao PDF */
+.nav-pdfs{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.nav-pdfs button{padding:6px 14px;border:none;border-radius:6px;cursor:pointer;font-size:.84rem;background:#1565c0;color:#fff;}
+.nav-pdfs button:disabled{background:#ccc;cursor:not-allowed;}
+.nav-pdfs span{font-size:.83rem;color:#555;}
+#toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#1b5e20;color:#fff;padding:9px 20px;border-radius:8px;font-size:.86rem;display:none;z-index:9999;}
 #toast.err{background:#c62828;}
 </style>
 </head>
 <body>
 <header>
-  <h1>&#128227; Quadro de Anuncios &#8212; Congregacao Central SP (40600)</h1>
+  <h1>&#128227; Quadro de Anuncios &#8212; Congregacao Central SP 40600</h1>
   <a href="index.html">&#8592; Territorios</a>
 </header>
-<div class="toolbar">
-  <button id="btnPrev" onclick="navegar(-1)" disabled>&#8592; Anterior</button>
-  <span class="titulo" id="titAtual">Nenhum arquivo selecionado</span>
-  <span class="cont" id="contArq"></span>
-  <button id="btnNext" onclick="navegar(1)" disabled>Proximo &#8594;</button>
+<div class="tabs">
+  <button class="tab on" onclick="verTab('dir',this)">&#128193; Pasta do Drive</button>
+  <button class="tab" onclick="verTab('lista',this)">&#128196; PDFs Individuais</button>
 </div>
-<div class="main">
-  <div class="cfg-box" id="cfgBox">
-    <h2>&#128279; Configurar pasta do Google Drive</h2>
-    <p>Cole o <strong>link de compartilhamento</strong> de uma pasta publica do Google Drive. Os arquivos PDF dessa pasta aparecao automaticamente aqui.<br><br>
-    <strong>Como tornar a pasta publica:</strong> No Drive, clique com botao direito na pasta > Compartilhar > Alterar para qualquer pessoa com o link > Visualizador.</p>
-    <div class="av">O Google Drive nao permite listar arquivos via link simples. Informe o <strong>ID da pasta</strong> e os <strong>IDs dos PDFs</strong> que quiser exibir (voce pode adicionar quantos quiser).</div>
-    <input type="text" id="inpNome" placeholder="Nome do documento (ex: Programa da Reuniao)">
-    <input type="text" id="inpId" placeholder="ID do arquivo no Google Drive (parte do link apos /d/)">
-    <div class="row">
-      <button class="b-prim" onclick="addArquivo()">&#43; Adicionar arquivo</button>
-      <button class="b-sec" onclick="toggleCfg()">Fechar configuracao</button>
+<div class="content">
+
+  <!-- TAB 1: iframe da pasta do Drive -->
+  <div id="vistaDir">
+    <iframe
+      src="https://drive.google.com/embeddedfolderview?id=1zD2VKrtNAVM2Z-Zlpmuw4d7kq9QD05Z9#list"
+      title="Pasta Quadro de Anuncios"
+      sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </div>
+
+  <!-- Viewer de PDF individual (aparece ao clicar num item da lista) -->
+  <div id="vistaPDF">
+    <div class="pdf-toolbar">
+      <button onclick="fecharPDF()">&#8592; Voltar a lista</button>
+      <button onclick="navPDF(-1)" id="bPrev">&#8592; Anterior</button>
+      <span id="tituloAtual">&#8212;</span>
+      <button onclick="navPDF(1)" id="bNext">Proximo &#8594;</button>
+      <span id="contPDF"></span>
+    </div>
+    <iframe id="iframePDF" src="" title="PDF" allow="autoplay" allowfullscreen></iframe>
+  </div>
+
+  <!-- TAB 2: lista de PDFs avulsos -->
+  <div id="vistaLista">
+    <div style="padding:16px">
+      <div class="av">
+        &#128161; Cole o <strong>link de compartilhamento</strong> de qualquer PDF do Google Drive. O ID e extraido automaticamente do link.
+        Esses arquivos ficam salvos no seu navegador e ficam aqui toda vez que acessar.
+      </div>
+      <div class="form-add" id="formAdd">
+        <h3>&#43; Adicionar PDF</h3>
+        <p>Obtenha o link em: botao direito no arquivo > Compartilhar > Copiar link</p>
+        <input type="text" id="inNome" placeholder="Nome do documento (ex: Folha de Reuniao - 29/06)">
+        <input type="text" id="inLink" placeholder="Link do Google Drive (https://drive.google.com/file/d/...)">
+        <div class="row">
+          <button class="bp" onclick="addPDF()">&#43; Adicionar</button>
+          <button class="bs" onclick="toggleForm()">Cancelar</button>
+        </div>
+      </div>
+      <div class="nav-pdfs" id="navPDFs" style="display:none">
+        <button onclick="navPDF(-1)" id="bPrev2">&#8592;</button>
+        <span id="contPDF2"></span>
+        <button onclick="navPDF(1)" id="bNext2">&#8594;</button>
+        <button class="bs" style="margin-left:auto" onclick="toggleForm()">&#43; Adicionar PDF</button>
+      </div>
+      <div class="lista-pdfs" id="listaPDFs"></div>
     </div>
   </div>
-  <div class="lista-box" id="listaBox" style="display:none">
-    <h2>&#128196; Arquivos disponiveis <button class="b-sec" onclick="toggleCfg()" style="font-size:.77rem;padding:3px 9px;margin-left:10px">&#43; Adicionar</button></h2>
-    <div class="lista" id="lista"></div>
-  </div>
-  <div class="viewer-box" id="viewerBox">
-    <div class="empty">
-      <div class="ic">&#128196;</div>
-      <p>Adicione arquivos PDF do Google Drive e clique para visualizar.</p>
-    </div>
-  </div>
+
 </div>
 <div id="toast"></div>
 <script>
-var ARQUIVOS = [];
-var idxAtual = -1;
+var PDFS = [];
+var idxPDF = -1;
+var tabAtual = 'dir';
 
-function carregar(){
-  var s = localStorage.getItem('qa_arquivos');
-  if(s){try{ARQUIVOS=JSON.parse(s);}catch(e){ARQUIVOS=[];}}
-  renderLista();
-  if(ARQUIVOS.length>0){document.getElementById('cfgBox').style.display='none';document.getElementById('listaBox').style.display='block';abrirIdx(0);}
+// ---- TABS ----
+function verTab(tab, btn) {
+  tabAtual = tab;
+  document.querySelectorAll('.tab').forEach(function(b){b.classList.remove('on');});
+  if(btn)btn.classList.add('on');
+  document.getElementById('vistaDir').style.display = tab==='dir' ? 'flex' : 'none';
+  document.getElementById('vistaLista').style.display = tab==='lista' ? 'block' : 'none';
+  if(tab==='dir') {
+    document.getElementById('vistaPDF').style.display = 'none';
+    document.getElementById('vistaDir').style.display = 'flex';
+  }
+  if(tab==='lista') renderLista();
 }
 
-function salvarLocal(){localStorage.setItem('qa_arquivos',JSON.stringify(ARQUIVOS));}
+// Ajustar display inicial
+document.getElementById('vistaDir').style.display = 'flex';
+document.getElementById('vistaLista').style.display = 'none';
+document.getElementById('vistaPDF').style.display = 'none';
 
-function addArquivo(){
-  var nome = document.getElementById('inpNome').value.trim();
-  var id = document.getElementById('inpId').value.trim();
-  if(!nome||!id){toast('Preencha nome e ID do arquivo.',true);return;}
-  // Extrair ID se o usuario colou o link completo
-  var m = id.match(//d/([a-zA-Z0-9_-]+)/);
-  if(m)id=m[1];
-  ARQUIVOS.push({nome:nome,id:id});
-  salvarLocal();
-  document.getElementById('inpNome').value='';
-  document.getElementById('inpId').value='';
-  document.getElementById('cfgBox').style.display='none';
-  document.getElementById('listaBox').style.display='block';
+// ---- LOCAL STORAGE ----
+function load() {
+  try{PDFS=JSON.parse(localStorage.getItem('qa_pdfs')||'[]');}catch(e){PDFS=[];}
+}
+function save() { localStorage.setItem('qa_pdfs', JSON.stringify(PDFS)); }
+
+// ---- ADICIONAR PDF ----
+function addPDF() {
+  var nome = document.getElementById('inNome').value.trim();
+  var link = document.getElementById('inLink').value.trim();
+  if(!nome||!link){toast('Preencha nome e link.',true);return;}
+  var m = link.match(//d/([a-zA-Z0-9_-]{20,})/);
+  if(!m){toast('Link invalido. Use o link de compartilhamento do Drive.',true);return;}
+  PDFS.push({nome:nome,id:m[1]});
+  save();
+  document.getElementById('inNome').value='';
+  document.getElementById('inLink').value='';
   renderLista();
-  abrirIdx(ARQUIVOS.length-1);
-  toast('Arquivo adicionado!');
+  abrirPDF(PDFS.length-1);
+  toast('PDF adicionado!');
 }
 
-function remover(idx){
-  if(!confirm('Remover este arquivo da lista?'))return;
-  ARQUIVOS.splice(idx,1);
-  salvarLocal();
-  renderLista();
-  if(idx===idxAtual){idxAtual=-1;document.getElementById('viewerBox').innerHTML='<div class="empty"><div class="ic">&#128196;</div><p>Selecione um arquivo.</p></div>';}
-  if(ARQUIVOS.length===0){document.getElementById('listaBox').style.display='none';document.getElementById('cfgBox').style.display='block';}
+function toggleForm() {
+  var f=document.getElementById('formAdd');
+  f.style.display = f.style.display==='none'?'block':'none';
+}
+
+// ---- LISTA ----
+function renderLista() {
+  load();
+  var el=document.getElementById('listaPDFs');
+  var nav=document.getElementById('navPDFs');
+  if(PDFS.length===0){
+    el.innerHTML='<p style="color:#aaa;font-size:.84rem">Nenhum PDF adicionado ainda. Use o formulario acima.</p>';
+    nav.style.display='none';
+    return;
+  }
+  nav.style.display='flex';
   atualizarNav();
-}
-
-function renderLista(){
-  var el=document.getElementById('lista');
-  if(ARQUIVOS.length===0){el.innerHTML='<p style="color:#aaa;font-size:.85rem">Nenhum arquivo adicionado ainda.</p>';return;}
-  el.innerHTML=ARQUIVOS.map(function(a,i){
-    return '<div class="item'+(i===idxAtual?' ativo':'')+'" onclick="abrirIdx('+i+')">'+
+  el.innerHTML=PDFS.map(function(p,i){
+    return '<div class="pdf-item'+(i===idxPDF?' on':'')+'" onclick="abrirPDF('+i+')">'+
       '<span class="ico">&#128196;</span>'+
-      '<div class="info">'+
-        '<div class="nome">'+a.nome+'</div>'+
-        '<div class="sub"><span class="tag-drive">Google Drive</span></div>'+
-      '</div>'+
-      '<span onclick="event.stopPropagation();remover('+i+')" style="margin-left:auto;cursor:pointer;color:#aaa;font-size:1.1rem;" title="Remover">&#10005;</span>'+
+      '<div class="info"><div class="nome">'+p.nome+'</div><div class="sub">Google Drive PDF</div></div>'+
+      '<span class="del" onclick="event.stopPropagation();delPDF('+i+')" title="Remover">&#10005;</span>'+
     '</div>';
   }).join('');
 }
 
-function abrirIdx(i){
-  if(i<0||i>=ARQUIVOS.length)return;
-  idxAtual=i;
-  var a=ARQUIVOS[i];
-  // URL de preview do Google Drive para PDF
-  var url='https://drive.google.com/file/d/'+a.id+'/preview';
-  document.getElementById('viewerBox').innerHTML='<iframe src="'+url+'" allow="autoplay" allowfullscreen></iframe>';
-  document.getElementById('titAtual').textContent=a.nome;
-  document.getElementById('contArq').textContent=(i+1)+' / '+ARQUIVOS.length;
+function delPDF(i) {
+  if(!confirm('Remover este PDF da lista?'))return;
+  PDFS.splice(i,1);
+  save();
+  if(i===idxPDF){fecharPDF();}
   renderLista();
+}
+
+// ---- VIEWER PDF ----
+function abrirPDF(i) {
+  if(i<0||i>=PDFS.length)return;
+  idxPDF=i;
+  var url='https://drive.google.com/file/d/'+PDFS[i].id+'/preview';
+  document.getElementById('iframePDF').src=url;
+  document.getElementById('tituloAtual').textContent=PDFS[i].nome;
+  document.getElementById('contPDF').textContent=(i+1)+'/'+PDFS.length;
+  document.getElementById('contPDF2').textContent=(i+1)+' de '+PDFS.length;
+  document.getElementById('vistaLista').style.display='none';
+  document.getElementById('vistaPDF').style.display='flex';
   atualizarNav();
 }
 
-function navegar(dir){
-  var novo=idxAtual+dir;
-  if(novo>=0&&novo<ARQUIVOS.length)abrirIdx(novo);
+function fecharPDF() {
+  document.getElementById('vistaPDF').style.display='none';
+  document.getElementById('vistaLista').style.display='block';
+  renderLista();
 }
 
-function atualizarNav(){
-  document.getElementById('btnPrev').disabled=idxAtual<=0;
-  document.getElementById('btnNext').disabled=idxAtual>=ARQUIVOS.length-1;
+function navPDF(dir) {
+  var novo=idxPDF+dir;
+  if(novo>=0&&novo<PDFS.length)abrirPDF(novo);
 }
 
-function toggleCfg(){
-  var c=document.getElementById('cfgBox');
-  c.style.display=c.style.display==='none'?'block':'none';
+function atualizarNav() {
+  var pd=idxPDF<=0;var pn=idxPDF>=PDFS.length-1||PDFS.length===0;
+  var bp=document.getElementById('bPrev');if(bp)bp.disabled=pd;
+  var bn=document.getElementById('bNext');if(bn)bn.disabled=pn;
+  var b2=document.getElementById('bPrev2');if(b2)b2.disabled=pd;
+  var b3=document.getElementById('bNext2');if(b3)b3.disabled=pn;
 }
 
 function toast(m,e){
@@ -171,7 +234,7 @@ function toast(m,e){
   setTimeout(function(){t.style.display='none';},3500);
 }
 
-carregar();
+load();
 </script>
 </body>
 </html>
