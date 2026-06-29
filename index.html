@@ -532,6 +532,7 @@ function doSave(pat){
   var bytes=new TextEncoder().encode(html);
   var bin='';bytes.forEach(function(b){bin+=String.fromCharCode(b);});
   var b64=btoa(bin);
+  if(b64.length<10000){alert('Erro: conteúdo muito pequeno, salvar cancelado.');return;}
   fetch('https://api.github.com/repos/central-cong-sp/territorios-central-sp/contents/index.html',
     {headers:{'Authorization':'token '+pat,'Accept':'application/vnd.github.v3+json'}})
   .then(function(r){return r.json();})
