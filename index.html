@@ -475,8 +475,7 @@ function buildFile(){
   var tg=clone.querySelector('#terrGrid');if(tg)tg.innerHTML='';
   var mg=clone.querySelector('#mapGeral');if(mg)mg.innerHTML='';
   clone.querySelector('#estado').textContent=JSON.stringify(S);
-  var html='<!DOCTYPE html>
-'+clone.outerHTML;
+  var html='<!DOCTYPE html>'+clone.outerHTML;
   var blob=new Blob([html],{type:'text/html'});
   var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='plano-territorios.html';a.click();
 }
@@ -503,8 +502,7 @@ function doSave(pat){
   var tg=clone.querySelector('#terrGrid');if(tg)tg.innerHTML='';
   var mg=clone.querySelector('#mapGeral');if(mg)mg.innerHTML='';
   clone.querySelector('#estado').textContent=JSON.stringify(S);
-  var html='<!DOCTYPE html>
-'+clone.outerHTML;
+  var html='<!DOCTYPE html>'+clone.outerHTML;
   var bytes=new TextEncoder().encode(html);
   var bin='';bytes.forEach(function(b){bin+=String.fromCharCode(b);});
   var b64=btoa(bin);
