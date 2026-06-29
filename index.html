@@ -1,301 +1,381 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
+<html lang="pt-BR"><head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Territorios - Congregacao Central Santana de Parnaiba SP 40600</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plano de Territórios — Congregação Santana de Parnaíba</title>
 <style>
-:root{--v:#2e7d32;--vc:#4caf50;--bg:#f5f5f5;--br:#ddd;--tx:#222;--am:#fff9c4;}
-*{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--tx);}
-header{background:var(--v);color:#fff;padding:16px 24px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
-header h1{font-size:1.15rem;flex:1;}
-nav{background:#1b5e20;display:flex;gap:2px;padding:0 16px;flex-wrap:wrap;}
-nav button{background:none;border:none;color:rgba(255,255,255,.75);padding:10px 16px;cursor:pointer;font-size:.88rem;border-bottom:3px solid transparent;transition:all .15s;}
-nav button.on,nav button:hover{color:#fff;border-bottom-color:#a5d6a7;}
-main{max-width:1200px;margin:0 auto;padding:20px 16px;}
-.sec{display:none;}.sec.on{display:block;}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin-top:12px;}
-.card{background:#fff;border:1px solid var(--br);border-radius:8px;padding:13px;}
-.cod{font-size:1.3rem;font-weight:700;color:var(--v);}
-.gb{display:inline-block;font-size:.7rem;padding:2px 7px;border-radius:10px;color:#fff;margin-top:3px;}
-.tb{display:inline-block;font-size:.7rem;padding:2px 7px;border-radius:10px;background:#e3f2fd;color:#1565c0;margin-left:3px;}
-.meta{font-size:.78rem;color:#666;margin-top:6px;}
-.mapa{width:100%;height:100px;background:#e8f5e9;border-radius:4px;margin-top:8px;display:flex;align-items:center;justify-content:center;color:#aaa;font-size:.75rem;overflow:hidden;}
-.mapa img{width:100%;height:100%;object-fit:cover;border-radius:4px;}
-.tw{overflow-x:auto;margin-top:14px;}
-table{width:100%;border-collapse:collapse;background:#fff;font-size:.87rem;}
-th{background:var(--v);color:#fff;padding:9px 12px;text-align:left;white-space:nowrap;}
-td{padding:8px 12px;border-bottom:1px solid #eee;vertical-align:middle;}
-tr:hover td{background:#f9fbe7;}
-.sg{border:1px solid var(--br);border-radius:4px;padding:3px 7px;font-size:.84rem;background:#fff;}
-.btn{border:none;padding:8px 15px;border-radius:6px;cursor:pointer;font-size:.87rem;margin:0 6px 10px 0;color:#fff;}
-.be{background:var(--v);}
-.bgh{background:#24292f;}
-.bgh:disabled{background:#888;cursor:not-allowed;}
-.res{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px;margin-bottom:16px;}
-.rc{background:#fff;border-left:4px solid var(--v);border-radius:6px;padding:11px 14px;box-shadow:0 1px 3px rgba(0,0,0,.08);}
-.rc h3{font-size:.88rem;color:var(--v);}
-.rc .n{font-size:1.7rem;font-weight:700;}
-.rc .s{font-size:.73rem;color:#888;}
-.cal{margin-top:14px;}
-.mb{background:#fff;border-radius:7px;margin-bottom:14px;overflow:hidden;border:1px solid var(--br);}
-.mh{padding:9px 15px;font-weight:600;font-size:.93rem;color:#fff;}
-.mbd{padding:11px 15px;}
-.sr{display:flex;gap:9px;align-items:center;padding:5px 0;border-bottom:1px solid #f0f0f0;flex-wrap:wrap;}
-.sr:last-child{border-bottom:none;}
-.sd{width:78px;font-size:.78rem;color:#666;flex-shrink:0;}
-.st{font-size:.73rem;padding:2px 7px;border-radius:9px;background:#e8f5e9;color:#2e7d32;flex-shrink:0;}
-.st.cg{background:#fce4ec;color:#880e4f;}
-.st.mi{background:#e3f2fd;color:#0d47a1;}
-.ste{font-size:.84rem;font-weight:500;}
-.fil{display:flex;gap:9px;flex-wrap:wrap;margin:11px 0;}
-.fil input,.fil select{border:1px solid var(--br);border-radius:6px;padding:6px 11px;font-size:.87rem;}
-.fil input{flex:1;min-width:170px;}
-.av{background:var(--am);border-left:4px solid #f9a825;padding:11px 15px;border-radius:4px;font-size:.87rem;margin-bottom:14px;}
-#toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#1b5e20;color:#fff;padding:11px 22px;border-radius:8px;font-size:.88rem;display:none;z-index:9999;box-shadow:0 4px 14px rgba(0,0,0,.2);}
-#toast.err{background:#b71c1c;}
-#mtoken{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9998;align-items:center;justify-content:center;}
-#mtoken.show{display:flex;}
-.mbox{background:#fff;border-radius:10px;padding:26px;max-width:450px;width:90%;box-shadow:0 8px 32px rgba(0,0,0,.2);}
-.mbox h2{font-size:1.05rem;margin-bottom:9px;}
-.mbox p{font-size:.84rem;color:#555;margin-bottom:12px;line-height:1.5;}
-.mbox input{width:100%;border:1px solid #ddd;border-radius:6px;padding:8px 11px;font-size:.88rem;margin-bottom:11px;font-family:monospace;}
-.mbox .mb2{display:flex;gap:8px;}
-.mbox .mb2 button{flex:1;padding:8px;border:none;border-radius:6px;cursor:pointer;font-size:.87rem;}
-.mok{background:#24292f;color:#fff;}.mno{background:#eee;color:#333;}
+:root{
+  --paper:#f4f7f8; --card:#ffffff; --ink:#1b2a31; --ink2:#54707d; --line:#d6e0e4;
+  --primary:#2f6f8f; --accent:#c8893a;
+  --c-benoa:#7a5ea8; --c-salao:#c0504d; --c-sluis:#2f6f8f; --c-dina:#3a7d6b;
+  --c-svic:#b5772e; --c-fernao:#4a78b5; --c-meio:#54707d; --c-cong:#c8893a;
+  --shadow:0 1px 2px rgba(27,42,49,.06),0 4px 14px rgba(27,42,49,.05);
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+  font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.mono{font-family:"SFMono-Regular",ui-monospace,"Cascadia Mono","Consolas",monospace}
+h1,h2,h3{margin:0;font-weight:650;letter-spacing:-.01em}
+.eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2);font-weight:600}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+header.top{background:linear-gradient(180deg,#22414c,#1b343d);color:#eef4f6;border-bottom:3px solid var(--accent)}
+.top .wrap{display:flex;align-items:center;gap:18px;padding-top:18px;padding-bottom:18px;flex-wrap:wrap}
+.brandmark{width:42px;height:42px;border:2px solid var(--accent);border-radius:9px;display:grid;place-items:center;font-weight:800;color:var(--accent);flex:0 0 auto;font-size:18px}
+.top h1{font-size:19px;color:#fff;line-height:1.15}
+.top .sub{font-size:12.5px;color:#aec6cf;letter-spacing:.04em}
+.top .actions{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+button{font:inherit;cursor:pointer;border:1px solid transparent;border-radius:8px;padding:8px 13px;background:#2f6f8f;color:#fff;font-weight:600;font-size:13.5px;transition:filter .15s,background .15s}
+button:hover{filter:brightness(1.07)}
+button.ghost{background:transparent;border-color:#5b7a85;color:#dceaee}
+button.ghost:hover{background:rgba(255,255,255,.08)}
+button.warn{background:var(--accent)}
+button.danger{background:#c0504d}
+nav.tabs{background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}
+nav.tabs .wrap{display:flex;gap:2px;overflow-x:auto}
+.tab{background:none;color:var(--ink2);border:none;border-radius:0;padding:14px 16px;font-weight:600;border-bottom:3px solid transparent;white-space:nowrap}
+.tab:hover{color:var(--ink);background:transparent;filter:none}
+.tab.active{color:var(--primary);border-bottom-color:var(--primary)}
+main{padding:26px 0 70px}
+.view{display:none}.view.active{display:block}
+.lead{color:var(--ink2);max-width:70ch;margin:.2em 0 1.4em}
+#editBanner{display:none;background:#fff7ec;border:1px solid #e8c990;color:#7a531a;padding:9px 14px;border-radius:9px;margin-bottom:18px;font-size:13.5px}
+body.editing #editBanner{display:block}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(255px,1fr))}
+.gcard{background:var(--card);border:1px solid var(--line);border-radius:13px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+.gcard .bar{height:6px}
+.gcard .body{padding:14px 15px 15px}
+.gcard h3{font-size:16px;display:flex;align-items:center;gap:8px}
+.dot{width:11px;height:11px;border-radius:50%;flex:0 0 auto}
+.gmeta{display:flex;gap:14px;margin:9px 0 11px;font-size:12.5px;color:var(--ink2);flex-wrap:wrap}
+.gmeta b{color:var(--ink);font-weight:650}
+.pubrow{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink2);margin-bottom:11px}
+.pubrow input{width:58px;padding:4px 7px;border:1px solid var(--line);border-radius:6px;font:inherit;text-align:center}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:6px;background:#eef3f5;border:1px solid var(--line);border-radius:7px;padding:3px 4px 3px 0;font-size:12.5px;font-weight:600}
+.chip .code{font-family:ui-monospace,monospace;background:var(--primary);color:#fff;border-radius:5px;padding:3px 7px;font-size:12px;letter-spacing:.02em}
+.chip .tname{color:var(--ink2);font-weight:500;padding-right:5px;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.chip select{display:none;font:inherit;font-size:12px;border:1px solid var(--line);border-radius:5px;padding:2px;background:#fff}
+body.editing .chip select{display:inline-block}
+.load{height:7px;background:#edf2f4;border-radius:5px;overflow:hidden;margin-top:4px}
+.load > i{display:block;height:100%}
+.loadlbl{font-size:11.5px;color:var(--ink2);margin-top:5px}
+.pool{background:var(--card);border:1px solid var(--line);border-radius:13px;box-shadow:var(--shadow);padding:16px 17px;margin-bottom:16px}
+.pool.cong{border-left:5px solid var(--accent)}
+.pool.meio{border-left:5px solid var(--c-meio)}
+.pool h3{font-size:16px;margin-bottom:3px}
+.pool .hint{font-size:12.5px;color:var(--ink2);margin-bottom:11px}
+.tgrid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.tcard{background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+.tcard .img{aspect-ratio:16/10;background:#e7eef0 url() center/cover;display:grid;place-items:center;color:#9fb4bc;font-size:12.5px;border-bottom:1px solid var(--line);position:relative}
+.tcard .img img{width:100%;height:100%;object-fit:cover;display:block}
+.tcard .tb{padding:12px 13px 13px}
+.tcard .th{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.tcard .th .code{font-family:ui-monospace,monospace;font-weight:700;background:var(--ink);color:#fff;border-radius:6px;padding:3px 8px;font-size:13px}
+.tcard .th .nm{font-weight:600;font-size:13.5px;line-height:1.2}
+.kv{display:flex;flex-wrap:wrap;gap:5px 14px;font-size:12px;color:var(--ink2);margin-bottom:8px}
+.kv b{color:var(--ink);font-weight:650}
+.pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;color:#fff}
+.tcard textarea,.tcard select{width:100%;font:inherit;font-size:12.5px;border:1px solid var(--line);border-radius:7px;padding:6px 8px;margin-top:6px;display:none}
+body.editing .tcard textarea,body.editing .tcard select{display:block}
+.tcard .obs{font-size:12px;color:var(--ink2);font-style:italic;margin-top:5px;min-height:1px}
+body.editing .tcard .obs{display:none}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;align-items:center}
+.filters input,.filters select{font:inherit;font-size:13.5px;padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:#fff}
+.filters input{min-width:200px}
+table{border-collapse:collapse;width:100%;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);font-size:13.5px}
+th,td{text-align:left;padding:11px 13px;border-bottom:1px solid var(--line)}
+th{background:#eef3f5;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2)}
+tr:last-child td{border-bottom:none}
+td .code{font-family:ui-monospace,monospace;font-weight:600}
+.semhead{display:flex;align-items:center;gap:10px;margin:22px 0 10px}
+.semhead .tag{background:var(--primary);color:#fff;border-radius:7px;padding:3px 10px;font-weight:700;font-size:12.5px}
+.calgrid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));margin-top:6px}
+.mcard{background:var(--card);border:1px solid var(--line);border-radius:11px;box-shadow:var(--shadow);padding:13px 14px}
+.mcard h4{margin:0 0 3px;font-size:14px}
+.mcard .smm{font-size:11.5px;color:var(--ink2);margin-bottom:9px}
+.mline{display:flex;gap:7px;font-size:12px;padding:3px 0;border-top:1px dashed var(--line)}
+.mline:first-of-type{border-top:none}
+.mline .d{font-weight:700;color:var(--ink2);min-width:74px}
+.legendrow{display:flex;flex-wrap:wrap;gap:14px;margin:6px 0 20px}
+.lg{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink2)}
+.lg i{width:14px;height:14px;border-radius:4px;display:inline-block}
+.mapwrap{background:var(--card);border:1px solid var(--line);border-radius:13px;box-shadow:var(--shadow);padding:14px;overflow:auto}
+.mapwrap img{width:100%;border-radius:8px;display:block}
+.note{background:#eef3f5;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13px;color:var(--ink2);margin:14px 0}
+.gh-banner{background:#f0f7ff;border:1px solid #c0d8f0;border-radius:9px;padding:10px 14px;margin-bottom:14px;font-size:13px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.gh-banner strong{color:#1565c0}
+#modalToken{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:999;align-items:center;justify-content:center}
+#modalToken.show{display:flex}
+.mbox{background:#fff;border-radius:12px;padding:26px;max-width:440px;width:90%;box-shadow:0 8px 32px rgba(0,0,0,.2)}
+.mbox h2{font-size:1rem;margin-bottom:10px}
+.mbox p{font-size:.84rem;color:#555;margin-bottom:12px;line-height:1.5}
+.mbox input{width:100%;border:1px solid #ddd;border-radius:6px;padding:8px 11px;font-size:.88rem;margin-bottom:11px;font-family:monospace}
+.mbox .mb2{display:flex;gap:8px}
+.mbox .mb2 button{flex:1;padding:8px;border:none;border-radius:6px;cursor:pointer;font-size:.87rem}
+.mok{background:#1565c0;color:#fff} .mno{background:#eee;color:#333}
+footer{border-top:1px solid var(--line);color:var(--ink2);font-size:12px;padding:18px 0;margin-top:30px}
+@media(max-width:560px){.top h1{font-size:16px}.wrap{padding:0 14px}}
+@media print{header.top,nav.tabs,.actions,#editBanner,.filters,footer,.noprint,#modalToken,.gh-banner{display:none!important}
+body{background:#fff}.view{display:block!important}.view:not(.printme){display:none!important}
+.gcard,.tcard,.pool,table,.mcard{box-shadow:none;break-inside:avoid}main{padding:0}}
 </style>
 </head>
 <body>
-<header>
-  <h1>&#128205; Territorios &#8212; Congregacao Central &#183; Santana de Parnaiba SP (40600)</h1>
-</header>
-<nav>
-  <button class="on" onclick="ir('dist',this)">&#128203; Distribuicao</button>
-  <button onclick="ir('terr',this)">&#128506; Territorios</button>
-  <button onclick="ir('rot',this)">&#128260; Rodizio</button>
-  <button onclick="ir('cal',this)">&#128197; Calendario</button>
-</nav>
-<main>
-<section class="sec on" id="dist">
-  <div class="av">&#9999; Clique <strong>Editar</strong> para mover territorios entre grupos. Depois <strong>&#128190; Salvar no GitHub</strong> publica online em ~1 min.</div>
-  <button class="btn be" id="btnE" onclick="toggleE()">Editar distribuicao</button>
-  <button class="btn bgh" id="btnG" onclick="salvarGH()">&#128190; Salvar no GitHub</button>
-  <div class="res" id="res"></div>
-  <div class="tw">
-    <table><thead><tr><th>Cod.</th><th>Nome / Tipo</th><th>Area km2</th><th>Dist. km</th><th>Grupo</th></tr></thead>
-    <tbody id="tb"></tbody></table>
+<script id="estado" type="application/json">{"territorios":[{"codigo":"01","nome":"Centro Histórico","area":0.087,"dist":0.84,"tipo":"Urbano","zona":"Benoá","obs":""},{"codigo":"02","nome":"Centro Histórico Alto","area":0.144,"dist":0.72,"tipo":"Urbano","zona":"Benoá","obs":""},{"codigo":"03","nome":"Jardim Benoá","area":0.135,"dist":0.28,"tipo":"Urbano","zona":"Benoá","obs":""},{"codigo":"04","nome":"Jardim Benoá / Salão","area":0.087,"dist":0,"tipo":"Urbano","zona":"MEIO","obs":""},{"codigo":"05","nome":"Jardim Deghi","area":0.061,"dist":0.29,"tipo":"Urbano","zona":"MEIO","obs":""},{"codigo":"06","nome":"Jardim Frediani / Padaria Xinq","area":0.035,"dist":0.38,"tipo":"Urbano","zona":"MEIO","obs":""},{"codigo":"07-A","nome":"Jardim Frediani","area":0.074,"dist":0.65,"tipo":"Urbano","zona":"Salão do Reino","obs":""},{"codigo":"07-B","nome":"Jardim Frediani","area":0.125,"dist":0.53,"tipo":"Urbano","zona":"Salão do Reino","obs":""},{"codigo":"08","nome":"Jardim Parnaíba","area":0.45,"dist":1.05,"tipo":"Urbano","zona":"Salão do Reino","obs":""},{"codigo":"09","nome":"Jardim São Luís / Colégio Ruth","area":0.06,"dist":0.45,"tipo":"Urbano","zona":"MEIO","obs":""},{"codigo":"10","nome":"Jardim São Luís","area":0.048,"dist":0.41,"tipo":"Urbano","zona":"MEIO","obs":""},{"codigo":"11-A","nome":"São Vicente de Paula","area":0.045,"dist":0.4,"tipo":"Urbano","zona":"São Vicente","obs":""},{"codigo":"11-B","nome":"São Vicente","area":0.061,"dist":0.61,"tipo":"Urbano","zona":"São Vicente","obs":""},{"codigo":"12","nome":"Jardim São Luís","area":0.072,"dist":0.68,"tipo":"Urbano","zona":"São Luís","obs":""},{"codigo":"13","nome":"Jardim São Luís","area":0.036,"dist":0.61,"tipo":"Urbano","zona":"São Luís","obs":""},{"codigo":"14","nome":"Jardim São Luís / Dinamarca","area":0.046,"dist":0.91,"tipo":"Urbano","zona":"Dinamarca","obs":""},{"codigo":"15","nome":"Jardim São Luís / Col. Monteiro Lobato","area":0.084,"dist":0.92,"tipo":"Urbano","zona":"Dinamarca","obs":""},{"codigo":"16","nome":"Cristal Park II e III","area":0.529,"dist":3.73,"tipo":"Misto","zona":"CONGREGAÇÃO","obs":""},{"codigo":"17-A","nome":"Refúgio dos Bandeirantes","area":0.122,"dist":4.74,"tipo":"Misto","zona":"CONGREGAÇÃO","obs":""},{"codigo":"17-B","nome":"Refúgio dos Bandeirantes","area":0.216,"dist":4.83,"tipo":"Misto","zona":"CONGREGAÇÃO","obs":""},{"codigo":"18-A","nome":"Entradas da Estr. Ecotурística do Suru","area":0.276,"dist":0.65,"tipo":"Misto","zona":"São Vicente","obs":""},{"codigo":"18-B","nome":"Entradas Estr. Ecotурística Suru","area":0.63,"dist":1.25,"tipo":"Misto","zona":"São Vicente","obs":""},{"codigo":"19-A","nome":"Votuparin / Pesqueiro","area":0.722,"dist":0.89,"tipo":"Misto","zona":"São Luís","obs":""},{"codigo":"19-B","nome":"Votuparin / Epolix","area":0.197,"dist":1.46,"tipo":"Urbano","zona":"São Luís","obs":""},{"codigo":"20-A","nome":"Parque Fernão Dias","area":0.097,"dist":1.33,"tipo":"Urbano","zona":"Fernão Dias","obs":""},{"codigo":"20-B","nome":"Parque Fernão Dias","area":0.122,"dist":1.47,"tipo":"Urbano","zona":"Fernão Dias","obs":""},{"codigo":"21","nome":"Sítio de Baixo","area":0.374,"dist":2.56,"tipo":"Rural","zona":"CONGREGAÇÃO","obs":"Sítios — baixa densidade."},{"codigo":"22","nome":"Jardim São Luís / Bulgária","area":0.255,"dist":1.32,"tipo":"Urbano","zona":"Dinamarca","obs":""},{"codigo":"23","nome":"Pacu / Lavras","area":1.216,"dist":2.25,"tipo":"Rural","zona":"CONGREGAÇÃO","obs":""},{"codigo":"24","nome":"KM 45 Estr. dos Romeiros","area":0.938,"dist":3.86,"tipo":"Rural","zona":"CONGREGAÇÃO","obs":"Estrada dos Romeiros."},{"codigo":"25","nome":"KM 47 Estr. dos Romeiros","area":0.232,"dist":4.77,"tipo":"Rural","zona":"CONGREGAÇÃO","obs":"Estrada dos Romeiros."},{"codigo":"26","nome":"Parque Vila Rica","area":0.233,"dist":1.96,"tipo":"Misto","zona":"Fernão Dias","obs":""},{"codigo":"27","nome":"Quinta das Flores / Pesqueiro","area":0.686,"dist":2.73,"tipo":"Rural","zona":"CONGREGAÇÃO","obs":"Pesqueiro — baixa densidade."},{"codigo":"28","nome":"Pesqueiro / Mandioquinha / Estrada","area":2.835,"dist":4.62,"tipo":"Rural","zona":"CONGREGAÇÃO","obs":"Pesqueiros e estrada — baixa densidade."},{"codigo":"29","nome":"Condomínio Voturuna","area":1.661,"dist":6.54,"tipo":"Rural","zona":"CONGREGAÇÃO","obs":"Condomínio: pregação só nas casas do entorno (poucas)."},{"codigo":"30","nome":"Tucson / Harmonia","area":2.274,"dist":7.69,"tipo":"Rural","zona":"CONGREGAÇÃO","obs":"Loteamento afastado."},{"codigo":"31","nome":"Condomínio Santa Helena","area":1.147,"dist":9.34,"tipo":"Rural","zona":"CONGREGAÇÃO","obs":"Condomínio afastado."},{"codigo":"32","nome":"Vila Esperança / Prédios","area":0.068,"dist":0.86,"tipo":"Urbano","zona":"Dinamarca","obs":""}],"publicadores":{"Benoá":"","Salão do Reino":"19","São Luís":"18","Dinamarca":"19","São Vicente":"18","Fernão Dias":"18"},"config":{"inicioMes":"2026-01"}}</script>
+
+<header class="top"><div class="wrap">
+  <div class="brandmark">T</div>
+  <div><h1>Plano Diretor de Territórios</h1>
+  <div class="sub">Congregação Santana de Parnaíba · vigência 2026–2028 · 38 territórios</div></div>
+  <div class="actions">
+    <button class="ghost" id="btnEdit">&#9998; Editar</button>
+    <button class="ghost" onclick="window.print()">&#128424; Imprimir</button>
+    <button class="warn" id="btnSave">&#128190; Salvar arquivo</button>
+    <button class="ghost" id="btnGH" onclick="salvarGitHub()" style="background:#24292f;border-color:#444">&#128190; Salvar no GitHub</button>
   </div>
-</section>
-<section class="sec" id="terr">
-  <div class="fil">
-    <input type="text" id="bus" placeholder="Buscar..." oninput="renderCards()">
-    <select id="fG" onchange="renderCards()"><option value="">Todos os grupos</option></select>
-    <select id="fT" onchange="renderCards()"><option value="">Todos os tipos</option><option>Urbano</option><option>Misto</option><option>Rural</option></select>
+</div></header>
+
+<nav class="tabs"><div class="wrap" id="tabbar">
+  <button class="tab active" data-v="dist">Distribuição</button>
+  <button class="tab" data-v="rot">Rotação 6/6</button>
+  <button class="tab" data-v="cal">Calendário</button>
+  <button class="tab" data-v="terr">Territórios</button>
+  <button class="tab" data-v="map">Mapa Geral</button>
+  <button class="tab" data-v="quadro">Quadro de Anúncios</button>
+</div></nav>
+
+<main class="wrap">
+  <div id="editBanner">&#9998; <b>Modo edição.</b> Troque o grupo de cada território no seletor, preencha os publicadores e ajuste tipo/observações. Ao terminar, clique em <b>&#128190; Salvar</b>.</div>
+  <div class="gh-banner noprint">
+    &#128279; GitHub Pages: <strong>central-cong-sp.github.io/territorios-central-sp</strong> &mdash;
+    <a href="quadro.html" style="color:#1565c0">&#128227; Quadro de Anúncios</a>
+    &nbsp;|&nbsp; Clique <b>Salvar no GitHub</b> para publicar alterações online.
   </div>
-  <div class="grid" id="grid"></div>
-</section>
-<section class="sec" id="rot">
-  <div class="av">Sequencia de territorios por grupo.</div>
-  <div id="rotD"></div>
-</section>
-<section class="sec" id="cal">
-  <div class="av">Calendario 24 meses &#8212; julho/2026 a junho/2028.</div>
-  <div class="cal" id="calD"></div>
-</section>
+
+  <section class="view active printme" id="v-dist">
+    <div class="eyebrow">Distribuição atual</div>
+    <p class="lead">Rascunho gerado por distância real (centroide → ponto de cada grupo) e tipo de área. Ajuste clicando — a carga e o rodízio recalculam sozinhos.</p>
+    <div class="grid" id="groupGrid"></div>
+    <div id="poolMeio"></div>
+    <div id="poolCong"></div>
+  </section>
+
+  <section class="view" id="v-rot">
+    <div class="eyebrow">Rodízio semestral</div>
+    <p class="lead">Os 6 conjuntos de grupo giram a cada 6 meses; em 2 anos cada grupo passa por todos.</p>
+    <div id="rotBox"></div>
+  </section>
+
+  <section class="view" id="v-cal">
+    <div class="eyebrow">Cronograma</div>
+    <p class="lead">Regra fixa da semana e calendário dos 24 meses.</p>
+    <div class="note"><b>Regra da semana —</b> Seg a Sex: territórios do Salão (meio de semana). Domingos + 1º e 2º sábado: cada grupo no seu território. 3º, 4º e 5º sábado: congregação reunida nos territórios distantes.</div>
+    <div class="legendrow">
+      <span class="lg"><i style="background:var(--c-sluis)"></i> Grupos (Dom / 1º-2º sáb)</span>
+      <span class="lg"><i style="background:var(--c-cong)"></i> Congregação (3º-5º sáb)</span>
+      <span class="lg"><i style="background:var(--c-meio)"></i> Meio de semana (Salão)</span>
+    </div>
+    <div class="calgrid" id="calGrid"></div>
+  </section>
+
+  <section class="view" id="v-terr">
+    <div class="eyebrow">Ficha dos territórios</div>
+    <div class="filters">
+      <input id="fSearch" placeholder="Buscar por código ou nome…">
+      <select id="fZona"><option value="">Todos os grupos</option></select>
+      <select id="fTipo"><option value="">Todos os tipos</option><option>Urbano</option><option>Misto</option><option>Rural</option></select>
+    </div>
+    <div class="note">Imagens em <span class="mono">img/</span> ao lado do arquivo, nomeadas pelo código: <span class="mono">img/01.png</span>, <span class="mono">img/18-A.png</span> etc.</div>
+    <div class="tgrid" id="terrGrid"></div>
+  </section>
+
+  <section class="view" id="v-map">
+    <div class="eyebrow">Visão geral</div>
+    <p class="lead">Mapa geral da congregação. Substitua por <span class="mono">img/mapa-geral.png</span>.</p>
+    <div class="mapwrap"><img id="mapaGeral" alt="Mapa geral dos territórios"></div>
+  </section>
+
+  <section class="view" id="v-quadro">
+    <div class="eyebrow">Quadro de Anúncios</div>
+    <p class="lead">Acesse a página dedicada do Quadro de Anúncios:</p>
+    <a href="quadro.html" style="display:inline-block;background:#1565c0;color:#fff;padding:12px 24px;border-radius:8px;font-size:1rem;font-weight:600;text-decoration:none;margin-top:8px">&#128227; Abrir Quadro de Anúncios</a>
+  </section>
 </main>
-<div id="toast"></div>
-<div id="mtoken">
+
+<footer class="wrap">Plano de territórios · arquivo único, editável e imprimível · os dados ficam gravados neste próprio HTML.</footer>
+
+<div id="modalToken">
   <div class="mbox">
     <h2>&#128190; Token do GitHub</h2>
-    <p>Informe seu <strong>Personal Access Token</strong> com permissao <code>public_repo</code>.<br>Fica guardado so no seu navegador (localStorage).</p>
-    <input type="password" id="ti" placeholder="ghp_...">
+    <p>Informe seu <strong>Personal Access Token</strong> com permissão <code>public_repo</code>.<br>Fica guardado só no seu navegador (localStorage).</p>
+    <input type="password" id="ghTokenInput" placeholder="ghp_...">
     <div class="mb2">
-      <button class="mno" onclick="fecharM()">Cancelar</button>
-      <button class="mok" onclick="salvarTok()">Salvar e publicar</button>
+      <button class="mno" id="btnModalCancel">Cancelar</button>
+      <button class="mok" id="btnModalOk">Salvar token e publicar</button>
     </div>
   </div>
-</div><script>
-const GH={owner:'central-cong-sp',repo:'territorios-central-sp',file:'index.html'};
-const GRP=[
-  {id:'midsemana',nome:'Meio de Semana (Salao)',cor:'#0d47a1'},
-  {id:'benoa',nome:'Grupo Benoa',cor:'#6a1b9a'},
-  {id:'salao',nome:'Salao do Reino',cor:'#1565c0'},
-  {id:'saoluiz',nome:'Sao Luis',cor:'#00695c'},
-  {id:'dinamarca',nome:'Grupo Dinamarca',cor:'#e65100'},
-  {id:'svicente',nome:'Sao Vicente',cor:'#4527a0'},
-  {id:'fernaodias',nome:'Fernao Dias',cor:'#558b2f'},
-  {id:'cong',nome:'Congregacao (3/4/5 sab)',cor:'#b71c1c'},
-];
-let T=[
-  {cod:'01',nome:'Territorio 01',area:0.18,dist:1.2,tipo:'Urbano',grupo:'benoa'},
-  {cod:'02',nome:'Territorio 02',area:0.22,dist:1.0,tipo:'Urbano',grupo:'benoa'},
-  {cod:'03',nome:'Territorio 03',area:0.19,dist:0.8,tipo:'Urbano',grupo:'benoa'},
-  {cod:'04',nome:'Territorio 04',area:0.15,dist:0.3,tipo:'Urbano',grupo:'midsemana'},
-  {cod:'05',nome:'Territorio 05',area:0.12,dist:0.4,tipo:'Urbano',grupo:'midsemana'},
-  {cod:'06',nome:'Territorio 06',area:0.035,dist:0.5,tipo:'Urbano',grupo:'midsemana'},
-  {cod:'07-A',nome:'Territorio 07-A',area:0.20,dist:0.6,tipo:'Urbano',grupo:'salao'},
-  {cod:'07-B',nome:'Territorio 07-B',area:0.18,dist:0.65,tipo:'Urbano',grupo:'salao'},
-  {cod:'08',nome:'Territorio 08',area:0.25,dist:0.7,tipo:'Urbano',grupo:'salao'},
-  {cod:'09',nome:'Territorio 09',area:0.14,dist:0.55,tipo:'Urbano',grupo:'midsemana'},
-  {cod:'10',nome:'Territorio 10',area:0.16,dist:0.6,tipo:'Urbano',grupo:'midsemana'},
-  {cod:'11-A',nome:'Territorio 11-A',area:0.30,dist:0.9,tipo:'Urbano',grupo:'saoluiz'},
-  {cod:'11-B',nome:'Territorio 11-B',area:0.28,dist:1.1,tipo:'Urbano',grupo:'svicente'},
-  {cod:'12',nome:'Territorio 12',area:0.22,dist:0.8,tipo:'Urbano',grupo:'saoluiz'},
-  {cod:'13',nome:'Territorio 13',area:0.19,dist:0.9,tipo:'Urbano',grupo:'saoluiz'},
-  {cod:'14',nome:'Territorio 14',area:0.35,dist:1.4,tipo:'Misto',grupo:'dinamarca'},
-  {cod:'15',nome:'Territorio 15',area:0.28,dist:1.6,tipo:'Misto',grupo:'dinamarca'},
-  {cod:'16',nome:'Territorio 16',area:1.20,dist:2.8,tipo:'Misto',grupo:'cong'},
-  {cod:'17-A',nome:'Territorio 17-A',area:0.90,dist:3.0,tipo:'Misto',grupo:'cong'},
-  {cod:'17-B',nome:'Territorio 17-B',area:0.85,dist:3.2,tipo:'Misto',grupo:'cong'},
-  {cod:'18-A',nome:'Territorio 18-A',area:0.40,dist:1.3,tipo:'Urbano',grupo:'svicente'},
-  {cod:'18-B',nome:'Territorio 18-B',area:0.38,dist:1.5,tipo:'Urbano',grupo:'svicente'},
-  {cod:'19-A',nome:'Territorio 19-A',area:0.31,dist:1.0,tipo:'Urbano',grupo:'saoluiz'},
-  {cod:'19-B',nome:'Territorio 19-B',area:0.29,dist:1.2,tipo:'Urbano',grupo:'saoluiz'},
-  {cod:'20-A',nome:'Territorio 20-A',area:0.55,dist:1.8,tipo:'Misto',grupo:'fernaodias'},
-  {cod:'20-B',nome:'Territorio 20-B',area:0.50,dist:2.0,tipo:'Misto',grupo:'fernaodias'},
-  {cod:'21',nome:'Territorio 21',area:2.10,dist:2.5,tipo:'Rural',grupo:'cong'},
-  {cod:'22',nome:'Territorio 22',area:0.45,dist:1.9,tipo:'Misto',grupo:'dinamarca'},
-  {cod:'23',nome:'Territorio 23',area:1.50,dist:3.5,tipo:'Rural',grupo:'cong'},
-  {cod:'24',nome:'Territorio 24',area:3.80,dist:4.2,tipo:'Rural',grupo:'cong'},
-  {cod:'25',nome:'Territorio 25',area:3.20,dist:4.5,tipo:'Rural',grupo:'cong'},
-  {cod:'26',nome:'Territorio 26',area:0.60,dist:2.2,tipo:'Misto',grupo:'fernaodias'},
-  {cod:'27',nome:'Territorio 27',area:4.50,dist:3.8,tipo:'Rural',grupo:'cong'},
-  {cod:'28',nome:'Territorio 28',area:2.80,dist:3.1,tipo:'Rural',grupo:'cong'},
-  {cod:'29',nome:'Territorio 29',area:1.90,dist:5.9,tipo:'Rural',grupo:'cong'},
-  {cod:'30',nome:'Territorio 30',area:2.20,dist:7.0,tipo:'Rural',grupo:'cong'},
-  {cod:'31',nome:'Territorio 31',area:3.10,dist:8.4,tipo:'Rural',grupo:'cong'},
-  {cod:'32',nome:'Territorio 32',area:0.55,dist:2.1,tipo:'Misto',grupo:'dinamarca'},
-];
-let em=false;
-function g(id){return GRP.find(x=>x.id===id)||{nome:id,cor:'#888'};}
-function ir(id,btn){
-  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
-  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('on'));
-  document.getElementById(id).classList.add('on');
-  if(btn)btn.classList.add('on');
-  if(id==='rot')renderRot();
-  if(id==='cal')renderCal();
+</div>
+<script>
+const GH_OWNER='central-cong-sp',GH_REPO='territorios-central-sp',GH_FILE='index.html';
+const GRUPOS=["Benoá","Salão do Reino","São Luís","Dinamarca","São Vicente","Fernão Dias"];
+const COR={"Benoá":"var(--c-benoa)","Salão do Reino":"var(--c-salao)","São Luís":"var(--c-sluis)","Dinamarca":"var(--c-dina)","São Vicente":"var(--c-svic)","Fernão Dias":"var(--c-fernao)","MEIO":"var(--c-meio)","CONGREGAÇÃO":"var(--c-cong)"};
+const ZONAS_ALL=[...GRUPOS,"MEIO","CONGREGAÇÃO"];
+function loadState(){
+  var raw={};try{raw=JSON.parse(document.getElementById('estado').textContent||"{}");}catch(e){raw={};}
+  var terr=raw.territorios||[];var pubs=raw.publicadores||{};
+  GRUPOS.forEach(function(g){if(!(g in pubs))pubs[g]="";});
+  var config=raw.config||{inicioMes:"2026-01"};
+  return {territorios:terr,publicadores:pubs,config:config};
 }
-function toast(m,e){
-  var t=document.getElementById('toast');
-  t.textContent=m;t.className=e?'err':'';t.style.display='block';
-  setTimeout(function(){t.style.display='none';},4500);
+var S=loadState();
+var $=function(s){return document.querySelector(s);};
+var $$=function(s){return Array.from(document.querySelectorAll(s));};
+var byZona=function(z){return S.territorios.filter(function(t){return t.zona===z;});};
+var fmtArea=function(a){return a.toFixed(2).replace('.',',');};
+var byCode=function(a,b){var pa=parseInt(a.codigo),pb=parseInt(b.codigo);return pa-pb||a.codigo.localeCompare(b.codigo);};
+
+function chip(t){
+  var opts=ZONAS_ALL.map(function(z){return '<option'+(z===t.zona?' selected':'')+'value="'+z+'">'+( z==='MEIO'?'Meio de semana':z==='CONGREGAÇÃO'?'Congregação':z)+'</option>';}).join('');
+  return '<span class="chip"><span class="code" style="background:'+COR[t.zona]+'">'+t.codigo+'</span><span class="tname">'+t.nome+'</span><select data-code="'+t.codigo+'" class="reassign">'+opts+'</select></span>';
 }
-function toggleE(){
-  em=!em;
-  document.getElementById('btnE').textContent=em?'Concluir edicao':'Editar distribuicao';
-  renderDist();
-}
-function renderRes(){
-  var el=document.getElementById('res'),c={};
-  GRP.forEach(function(x){c[x.id]=0;});
-  T.forEach(function(x){if(c[x.grupo]!==undefined)c[x.grupo]++;});
-  el.innerHTML=GRP.map(function(x){
-    return '<div class="rc"><h3>'+x.nome+'</h3><div class="n" style="color:'+x.cor+'">'+c[x.id]+'</div><div class="s">territorios</div></div>';
-  }).join('');
+function loadBar(area,pub){
+  var pct,lbl,col;
+  if(pub){var per=area/pub;pct=Math.min(100,per/0.06*100);lbl=fmtArea(area)+' km² · '+pub+' publ. → '+per.toFixed(3).replace('.',',')+' km²/publ.';}
+  else{pct=Math.min(100,area/2.0*100);lbl=fmtArea(area)+' km² · publicadores não informados';}
+  col=pct>75?'#c0504d':pct>45?'#c8893a':'#3a7d6b';
+  return '<div class="load"><i style="width:'+pct+'%;background:'+col+'"></i></div><div class="loadlbl">'+lbl+'</div>';
 }
 function renderDist(){
-  renderRes();
-  var tb=document.getElementById('tb');
-  var s=T.slice().sort(function(a,b){return a.cod.localeCompare(b.cod,undefined,{numeric:true});});
-  tb.innerHTML=s.map(function(t){
-    var gr=g(t.grupo);
-    var gc=em
-      ?('<select class="sg" onchange="mg(''+t.cod+'',this.value)">'+GRP.map(function(x){return '<option value="'+x.id+'"'+(t.grupo===x.id?' selected':'')+'>'+x.nome+'</option>';}).join('')+'</select>')
-      :('<span class="gb" style="background:'+gr.cor+'">'+gr.nome+'</span>');
-    return '<tr><td><strong>'+t.cod+'</strong></td><td>'+t.nome+' <span class="tb">'+t.tipo+'</span></td><td>'+t.area.toFixed(3)+'</td><td>'+t.dist.toFixed(1)+'</td><td>'+gc+'</td></tr>';
-  }).join('');
+  var gg=$('#groupGrid');gg.innerHTML='';
+  GRUPOS.forEach(function(g){
+    var ts=byZona(g);var area=ts.reduce(function(s,t){return s+t.area;},0);var pub=S.publicadores[g]||'';
+    var el=document.createElement('div');el.className='gcard';
+    el.innerHTML='<div class="bar" style="background:'+COR[g]+'"></div><div class="body"><h3><span class="dot" style="background:'+COR[g]+'"></span>'+g+'</h3><div class="gmeta"><span><b>'+ts.length+'</b> territórios</span><span><b>'+fmtArea(area)+'</b> km²</span></div><div class="pubrow">Publicadores: <input type="number" min="0" class="pub" data-g="'+g+'" value="'+pub+'" placeholder="—"></div>'+loadBar(area,pub)+'<div class="chips" style="margin-top:11px">'+ts.slice().sort(byCode).map(chip).join('')+'</div></div>';
+    gg.appendChild(el);
+  });
+  var meio=byZona('MEIO'),mArea=meio.reduce(function(s,t){return s+t.area;},0);
+  $('#poolMeio').innerHTML='<div class="pool meio"><h3>Meio de semana — Salão do Reino</h3><div class="hint">'+meio.length+' territórios mais próximos do Salão · '+fmtArea(mArea)+' km² · trabalhados de segunda a sexta.</div><div class="chips">'+meio.slice().sort(byCode).map(chip).join('')+'</div></div>';
+  var cong=byZona('CONGREGAÇÃO'),cArea=cong.reduce(function(s,t){return s+t.area;},0);
+  $('#poolCong').innerHTML='<div class="pool cong"><h3>Sábados da congregação — territórios distantes</h3><div class="hint">'+cong.length+' territórios · '+fmtArea(cArea)+' km² · trabalhados no 3º, 4º e 5º sábado de cada mês.</div><div class="chips">'+cong.slice().sort(byCode).map(chip).join('')+'</div></div>';
+  bindReassign();
 }
-function mg(cod,ng){var t=T.find(function(x){return x.cod===cod;});if(t){t.grupo=ng;renderRes();}}
-function renderCards(){
-  var b=(document.getElementById('bus').value||'').toLowerCase();
-  var gf=document.getElementById('fG').value;
-  var tf=document.getElementById('fT').value;
-  var s=document.getElementById('fG');
-  if(s.options.length<=1)GRP.forEach(function(x){var o=document.createElement('option');o.value=x.id;o.textContent=x.nome;s.appendChild(o);});
-  var f=T.filter(function(t){return(t.cod.toLowerCase().includes(b)||t.nome.toLowerCase().includes(b))&&(!gf||t.grupo===gf)&&(!tf||t.tipo===tf);});
-  document.getElementById('grid').innerHTML=f.map(function(t){
-    var gr=g(t.grupo);
-    return '<div class="card"><div class="cod">'+t.cod+'</div><span class="gb" style="background:'+gr.cor+'">'+gr.nome+'</span><span class="tb">'+t.tipo+'</span><div class="meta">Area: '+t.area.toFixed(3)+' km2 | Dist: '+t.dist.toFixed(1)+' km</div><div class="mapa"><img src="img/'+t.cod+'.png" onerror="this.parentElement.innerHTML='<span>img/'+t.cod+'.png</span>'"></div></div>';
-  }).join('');
+function bindReassign(){
+  $$('.reassign').forEach(function(s){s.onchange=function(e){var t=S.territorios.find(function(x){return x.codigo===e.target.dataset.code;});if(t)t.zona=e.target.value;renderAll();};});
+  $$('.pub').forEach(function(i){i.onchange=i.oninput=function(e){S.publicadores[e.target.dataset.g]=e.target.value;renderDist();};});
 }
+function bundles(){return GRUPOS.map(function(g){return byZona(g).slice().sort(byCode);});}
 function renderRot(){
-  var el=document.getElementById('rotD');
-  var gps=GRP.filter(function(x){return x.id!=='cong'&&x.id!=='midsemana';});
-  el.innerHTML=gps.map(function(gr){
-    var ts=T.filter(function(t){return t.grupo===gr.id;});
-    return '<div class="mb"><div class="mh" style="background:'+gr.cor+'">'+gr.nome+' - '+ts.length+' territorio(s)</div><div class="mbd"><table style="width:100%;font-size:.84rem"><thead><tr><th style="background:#f5f5f5;color:#333;padding:5px 9px">Semana</th><th style="background:#f5f5f5;color:#333;padding:5px 9px">Territorio</th><th style="background:#f5f5f5;color:#333;padding:5px 9px">Area</th><th style="background:#f5f5f5;color:#333;padding:5px 9px">Dist.</th></tr></thead><tbody>'+ts.map(function(t,i){return '<tr><td style="padding:4px 9px;border-bottom:1px solid #eee">'+(i+1)+'a sem.</td><td style="padding:4px 9px;border-bottom:1px solid #eee"><strong>'+t.cod+'</strong></td><td style="padding:4px 9px;border-bottom:1px solid #eee">'+t.area.toFixed(3)+' km2</td><td style="padding:4px 9px;border-bottom:1px solid #eee">'+t.dist.toFixed(1)+' km</td></tr>';}).join('')+'</tbody></table></div></div>';
-  }).join('');
-  var tc=T.filter(function(t){return t.grupo==='cong';});
-  var tm=T.filter(function(t){return t.grupo==='midsemana';});
-  el.innerHTML+='<div class="mb"><div class="mh" style="background:#b71c1c">Congregacao - '+tc.length+' territorios</div><div class="mbd"><div style="display:flex;flex-wrap:wrap;gap:7px">'+tc.map(function(t){return '<span style="background:#ffebee;border:1px solid #ef9a9a;border-radius:6px;padding:3px 9px;font-size:.81rem"><strong>'+t.cod+'</strong> ('+t.dist.toFixed(1)+'km)</span>';}).join('')+'</div></div></div>';
-  el.innerHTML+='<div class="mb"><div class="mh" style="background:#0d47a1">Meio de Semana - '+tm.length+' territorios</div><div class="mbd"><div style="display:flex;flex-wrap:wrap;gap:7px">'+tm.map(function(t){return '<span style="background:#e3f2fd;border:1px solid #90caf9;border-radius:6px;padding:3px 9px;font-size:.81rem"><strong>'+t.cod+'</strong> ('+t.dist.toFixed(1)+'km)</span>';}).join('')+'</div></div></div>';
-}
-var MP=['Janeiro','Fevereiro','Marco','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
-function renderCal(){
-  var el=document.getElementById('calD');
-  var gps=GRP.filter(function(x){return x.id!=='cong'&&x.id!=='midsemana';});
-  var tpg={};gps.forEach(function(gr){tpg[gr.id]=T.filter(function(t){return t.grupo===gr.id;});});
-  var tc=T.filter(function(t){return t.grupo==='cong';});
-  var tm=T.filter(function(t){return t.grupo==='midsemana';});
-  var cg={};gps.forEach(function(gr){cg[gr.id]=0;});var cm=0,cc=0;
-  var ini=new Date(2026,6,1);var bl='';
-  for(var m=0;m<24;m++){
-    var d=new Date(ini.getFullYear(),ini.getMonth()+m,1);
-    var ano=d.getFullYear(),mes=d.getMonth();
-    var sbs=[],sgs=[];
-    var dv=new Date(ano,mes,1);
-    while(dv.getMonth()===mes){if(dv.getDay()===6)sbs.push(new Date(dv));if(dv.getDay()===1)sgs.push(new Date(dv));dv.setDate(dv.getDate()+1);}
+  var b=bundles();var box=$('#rotBox');box.innerHTML='';
+  for(var s=0;s<4;s++){
+    var sec=document.createElement('div');
+    sec.innerHTML='<div class="semhead"><span class="tag">Semestre '+(s+1)+'</span><span class="loadlbl">meses '+(s*6+1)+'–'+(s*6+6)+' da vigência</span></div>';
     var rows='';
-    sgs.forEach(function(sg){
-      var t=tm.length>0?tm[cm%tm.length]:null;if(t)cm++;
-      rows+='<div class="sr"><span class="sd">'+sg.getDate().toString().padStart(2,'0')+'/'+(mes+1).toString().padStart(2,'0')+' seg</span><span class="st mi">Meio sem.</span><span class="ste">'+(t?t.cod+' - Salao':'-')+'</span></div>';
+    GRUPOS.forEach(function(g,i){
+      var set=b[(i+s)%GRUPOS.length];
+      rows+='<tr><td><span class="dot" style="display:inline-block;background:'+COR[g]+'"></span> <b>'+g+'</b></td><td>'+set.map(function(t){return '<span class="code" style="color:'+COR[g]+'">'+t.codigo+'</span>';}).join(' · ')+'</td></tr>';
     });
-    sbs.forEach(function(sb,ix){
-      var ns=ix+1,lb,cor,cl='';
-      if(ns<=2){
-        var gi=(m*2+(ns-1))%gps.length,gr=gps[gi],ts=tpg[gr.id],t=ts.length>0?ts[cg[gr.id]%ts.length]:null;
-        if(t)cg[gr.id]++;lb=gr.nome+(t?' > '+t.cod:'');cor=gr.cor;
-      }else{
-        var t2=tc.length>0?tc[cc%tc.length]:null;if(t2)cc++;lb='Congregacao'+(t2?' > '+t2.cod:'');cor='#b71c1c';cl='cg';
-      }
-      rows+='<div class="sr"><span class="sd">'+sb.getDate().toString().padStart(2,'0')+'/'+(mes+1).toString().padStart(2,'0')+' sab</span><span class="st '+cl+'" style="background:'+cor+'22;color:'+cor+'">'+ns+'o sab</span><span class="ste">'+lb+'</span></div>';
-    });
-    bl+='<div class="mb"><div class="mh" style="background:var(--v)">'+MP[mes]+' '+ano+'</div><div class="mbd">'+rows+'</div></div>';
+    sec.innerHTML+='<table><thead><tr><th style="width:32%">Grupo</th><th>Territórios neste semestre</th></tr></thead><tbody>'+rows+'</tbody></table>';
+    box.appendChild(sec);
   }
-  el.innerHTML=bl;
 }
+var MESES=["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
+function renderCal(){
+  var parts=S.config.inicioMes.split('-');var y0=parseInt(parts[0]),m0=parseInt(parts[1]);
+  var g=$('#calGrid');g.innerHTML='';
+  for(var k=0;k<24;k++){
+    var mi=(m0-1+k)%12,yr=y0+Math.floor((m0-1+k)/12),sem=Math.floor(k/6)+1;
+    var el=document.createElement('div');el.className='mcard';
+    el.innerHTML='<h4>'+MESES[mi]+' '+yr+'</h4><div class="smm">Rodízio: Semestre '+Math.min(sem,4)+'</div><div class="mline"><span class="d">Seg–Sex</span><span>Salão (meio de semana)</span></div><div class="mline"><span class="d">Domingos</span><span>Grupos nos seus territórios</span></div><div class="mline"><span class="d">1º–2º sáb</span><span>Grupos nos seus territórios</span></div><div class="mline"><span class="d">3º–5º sáb</span><span style="color:var(--c-cong);font-weight:600">Congregação · distantes</span></div>';
+    g.appendChild(el);
+  }
+}
+function pillTipo(t){var c=t==='Rural'?'#6a8a5e':t==='Misto'?'#b5772e':'#2f6f8f';return '<span class="pill" style="background:'+c+'">'+t+'</span>';}
+function renderTerr(){
+  var fz=$('#fZona');
+  if(fz.options.length<=1){ZONAS_ALL.forEach(function(z){var o=document.createElement('option');o.value=z;o.textContent=z==='MEIO'?'Meio de semana':z==='CONGREGAÇÃO'?'Congregação':z;fz.appendChild(o);});}
+  var q=($('#fSearch').value||'').toLowerCase(),zf=$('#fZona').value,tf=$('#fTipo').value;
+  var grid=$('#terrGrid');grid.innerHTML='';
+  S.territorios.filter(function(t){return(!q||t.codigo.toLowerCase().includes(q)||t.nome.toLowerCase().includes(q))&&(!zf||t.zona===zf)&&(!tf||t.tipo===tf);}).slice().sort(byCode).forEach(function(t){
+    var el=document.createElement('div');el.className='tcard';
+    var selZ=ZONAS_ALL.map(function(z){return '<option'+(z===t.zona?' selected':'')+'>'+z+'</option>';}).join('');
+    el.innerHTML='<div class="img"><img src="img/'+t.codigo+'.png" alt="" onerror="this.style.display='none';this.parentNode.append('mapa '+t.codigo+'')"></div><div class="tb"><div class="th"><span class="code">'+t.codigo+'</span><span class="nm">'+t.nome+'</span></div><div class="kv"><span>Área <b>'+fmtArea(t.area)+' km²</b></span><span>Do Salão <b>'+fmtArea(t.dist)+' km</b></span></div><div class="kv"><span>'+pillTipo(t.tipo)+'</span><span style="display:inline-flex;align-items:center;gap:5px"><span class="dot" style="background:'+COR[t.zona]+'"></span>'+(t.zona==='MEIO'?'Meio de semana':t.zona==='CONGREGAÇÃO'?'Congregação':t.zona)+'</span></div><div class="obs">'+(t.obs?('"'+t.obs+'"'):'')+'</div><select class="edTipo" data-code="'+t.codigo+'"><option'+(t.tipo=='Urbano'?' selected':'')+'>Urbano</option><option'+(t.tipo=='Misto'?' selected':'')+'>Misto</option><option'+(t.tipo=='Rural'?' selected':'')+'>Rural</option></select><select class="edZona" data-code="'+t.codigo+'">'+selZ+'</select><textarea class="edObs" data-code="'+t.codigo+'" rows="2" placeholder="Observações…">'+( t.obs||'')+'</textarea></div>';
+    grid.appendChild(el);
+  });
+  $$('.edTipo').forEach(function(s){s.onchange=function(e){findT(e).tipo=e.target.value;};});
+  $$('.edZona').forEach(function(s){s.onchange=function(e){findT(e).zona=e.target.value;renderDist();renderRot();};});
+  $$('.edObs').forEach(function(s){s.onchange=function(e){findT(e).obs=e.target.value;};});
+}
+function findT(e){return S.territorios.find(function(x){return x.codigo===e.target.dataset.code;});}
+function renderAll(){renderDist();renderRot();renderCal();renderTerr();}
+
+// Tabs
+$('#tabbar').onclick=function(e){var b=e.target.closest('.tab');if(!b)return;
+  $$('.tab').forEach(function(t){t.classList.toggle('active',t===b);});
+  $$('.view').forEach(function(v){v.classList.remove('active','printme');});
+  var v=$('#v-'+b.dataset.v);v.classList.add('active','printme');};
+
+// Editar
+$('#btnEdit').onclick=function(){document.body.classList.toggle('editing');
+  $('#btnEdit').textContent=document.body.classList.contains('editing')?'✓ Concluir':'&#9998; Editar';};
+$('#fSearch').oninput=$('#fZona').onchange=$('#fTipo').onchange=renderTerr;
+
+// Salvar arquivo local
+function buildFile(){
+  var clone=document.documentElement.cloneNode(true);
+  clone.querySelector('#groupGrid').innerHTML='';clone.querySelector('#poolMeio').innerHTML='';
+  clone.querySelector('#poolCong').innerHTML='';clone.querySelector('#rotBox').innerHTML='';
+  clone.querySelector('#calGrid').innerHTML='';clone.querySelector('#terrGrid').innerHTML='';
+  clone.querySelector('#estado').textContent=JSON.stringify(S);
+  return '<!DOCTYPE html>
+'+clone.outerHTML;
+}
+var fHandle=null;
+$('#btnSave').onclick=async function(){
+  var html=buildFile();
+  if(window.showSaveFilePicker){try{if(!fHandle)fHandle=await window.showSaveFilePicker({suggestedName:'plano-territorios.html',types:[{description:'HTML',accept:{'text/html':['.html']}}]});
+    var w=await fHandle.createWritable();await w.write(html);await w.close();toast('Salvo no arquivo.');return;}catch(err){if(err.name==='AbortError')return;}}
+  var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([html],{type:'text/html'}));a.download='plano-territorios.html';a.click();URL.revokeObjectURL(a.href);toast('Cópia atualizada baixada.');
+};
+
+// Salvar no GitHub via API + localStorage
 function getPAT(){return localStorage.getItem('gh_pat')||'';}
-function fecharM(){document.getElementById('mtoken').classList.remove('show');}
-function salvarTok(){
-  var v=document.getElementById('ti').value.trim();
+document.getElementById('btnModalCancel').addEventListener('click',function(){document.getElementById('modalToken').classList.remove('show');});
+document.getElementById('btnModalOk').addEventListener('click',function(){
+  var v=document.getElementById('ghTokenInput').value.trim();
   if(!v){alert('Informe o token!');return;}
-  localStorage.setItem('gh_pat',v);fecharM();_pub(v);
-}
-async function salvarGH(){
+  localStorage.setItem('gh_pat',v);
+  document.getElementById('modalToken').classList.remove('show');
+  _publicarGH(v);
+});
+function salvarGitHub(){
   var pat=getPAT();
-  if(!pat){document.getElementById('mtoken').classList.add('show');return;}
-  await _pub(pat);
+  if(!pat){document.getElementById('modalToken').classList.add('show');return;}
+  _publicarGH(pat);
 }
-async function _pub(pat){
-  var btn=document.getElementById('btnG');btn.disabled=true;btn.textContent='Salvando...';
+async function _publicarGH(pat){
+  var btn=$('#btnGH');btn.disabled=true;btn.textContent='⏳ Salvando...';
   try{
-    var gr=await fetch('https://api.github.com/repos/'+GH.owner+'/'+GH.repo+'/contents/'+GH.file,{headers:{Authorization:'token '+pat,Accept:'application/vnd.github.v3+json'}});
+    var gr=await fetch('https://api.github.com/repos/'+GH_OWNER+'/'+GH_REPO+'/contents/'+GH_FILE,{headers:{Authorization:'token '+pat,Accept:'application/vnd.github.v3+json'}});
     var gj=await gr.json();var sha=gj.sha;
-    var src=document.documentElement.outerHTML;
-    var tj=JSON.stringify(T,null,2);
-    var upd=src.replace(/let T=[[sS]*?];/,'let T='+tj+';');
-    var b64=btoa(unescape(encodeURIComponent(upd)));
-    var pr=await fetch('https://api.github.com/repos/'+GH.owner+'/'+GH.repo+'/contents/'+GH.file,{method:'PUT',headers:{Authorization:'token '+pat,Accept:'application/vnd.github.v3+json','Content-Type':'application/json'},body:JSON.stringify({message:'Atualiza distribuicao '+new Date().toLocaleString('pt-BR'),content:b64,sha:sha})});
+    var html=buildFile();
+    var bytes=new TextEncoder().encode(html);var bin='';bytes.forEach(function(b){bin+=String.fromCharCode(b);});var b64=btoa(bin);
+    var pr=await fetch('https://api.github.com/repos/'+GH_OWNER+'/'+GH_REPO+'/contents/'+GH_FILE,{method:'PUT',headers:{Authorization:'token '+pat,Accept:'application/vnd.github.v3+json','Content-Type':'application/json'},body:JSON.stringify({message:'Atualiza distribuição — '+new Date().toLocaleString('pt-BR'),content:b64,sha:sha})});
     var pj=await pr.json();
-    if(pr.ok){toast('Salvo! Site atualiza em ~1 min.');}
-    else{if(pr.status===401||pr.status===403){localStorage.removeItem('gh_pat');toast('Token invalido. Tente novamente.',true);}else{toast('Erro: '+(pj.message||pr.status),true);}}
-  }catch(e){toast('Erro: '+e.message,true);}
-  btn.disabled=false;btn.textContent='Salvar no GitHub';
+    if(pr.ok){toast('✅ Salvo! Site atualiza em ~1 min.');}
+    else{if(pr.status===401||pr.status===403){localStorage.removeItem('gh_pat');toast('❌ Token inválido. Tente novamente.',true);}else{toast('❌ '+(pj.message||pr.status),true);}}
+  }catch(e){toast('❌ '+e.message,true);}
+  btn.disabled=false;btn.textContent='&#128190; Salvar no GitHub';
 }
-renderDist();
-renderCards();
+function toast(m,e){var d=document.createElement('div');d.textContent=m;d.style.cssText='position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:'+(e?'#c62828':'#1b2a31')+';color:#fff;padding:10px 18px;border-radius:9px;font-size:13.5px;box-shadow:0 6px 20px rgba(0,0,0,.25);z-index:99';document.body.appendChild(d);setTimeout(function(){d.remove();},3000);}
+
+// Mapa
+var mg=$('#mapaGeral');
+mg.src='img/mapa-geral.png';
+mg.onerror=function(){this.src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400"><rect width="800" height="400" fill="%23e7eef0"/><text x="400" y="210" text-anchor="middle" font-family="sans-serif" font-size="18" fill="%239fb4bc">Adicionar img/mapa-geral.png</text></svg>';this.onerror=null;};
+
+$('#v-dist').classList.add('printme');
+renderAll();
 </script>
 </body>
 </html>
