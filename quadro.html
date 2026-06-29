@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Quadro de Anuncios - Congregacao Central Santana de Parnaiba SP 40600</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#222;display:flex;flex-direction:column;min-height:100vh;}
+header{background:#1565c0;color:#fff;padding:14px 24px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+header h1{font-size:1.1rem;flex:1;}
+header a{color:rgba(255,255,255,.8);font-size:.82rem;text-decoration:none;border:1px solid rgba(255,255,255,.4);padding:4px 10px;border-radius:5px;}
+header a:hover{background:rgba(255,255,255,.15);}
+.toolbar{background:#1976d2;padding:10px 20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.toolbar button{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;padding:7px 14px;border-radius:6px;cursor:pointer;font-size:.85rem;transition:background .15s;}
+.toolbar button:hover:not(:disabled){background:rgba(255,255,255,.28);}
+.toolbar button:disabled{opacity:.4;cursor:not-allowed;}
+.toolbar .titulo{color:#fff;font-size:.9rem;font-weight:600;flex:1;text-align:center;}
+.toolbar .cont{color:rgba(255,255,255,.75);font-size:.8rem;}
+.main{flex:1;display:flex;flex-direction:column;padding:16px;gap:14px;}
+.cfg-box{background:#fff;border-radius:8px;padding:18px 20px;box-shadow:0 1px 4px rgba(0,0,0,.09);}
+.cfg-box h2{font-size:1rem;color:#1565c0;margin-bottom:10px;}
+.cfg-box p{font-size:.83rem;color:#555;margin-bottom:10px;line-height:1.5;}
+.cfg-box input{width:100%;border:1px solid #ddd;border-radius:6px;padding:8px 11px;font-size:.87rem;margin-bottom:8px;}
+.cfg-box .row{display:flex;gap:8px;flex-wrap:wrap;}
+.cfg-box .row button{padding:8px 16px;border:none;border-radius:6px;cursor:pointer;font-size:.86rem;}
+.b-prim{background:#1565c0;color:#fff;}.b-prim:hover{background:#0d47a1;}
+.b-sec{background:#eee;color:#333;}.b-sec:hover{background:#ddd;}
+.lista-box{background:#fff;border-radius:8px;padding:16px 20px;box-shadow:0 1px 4px rgba(0,0,0,.09);}
+.lista-box h2{font-size:1rem;color:#1565c0;margin-bottom:12px;}
+.lista{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;}
+.item{border:1px solid #e0e0e0;border-radius:7px;padding:12px;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:10px;}
+.item:hover{border-color:#1565c0;background:#e3f2fd;}
+.item.ativo{border-color:#1565c0;background:#e3f2fd;font-weight:600;}
+.item .ico{font-size:1.5rem;flex-shrink:0;}
+.item .info{min-width:0;}
+.item .nome{font-size:.84rem;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.item .sub{font-size:.73rem;color:#888;margin-top:2px;}
+.viewer-box{background:#fff;border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,.09);overflow:hidden;flex:1;}
+.viewer-box iframe{width:100%;height:80vh;border:none;display:block;}
+.empty{text-align:center;padding:60px 20px;color:#aaa;}
+.empty .ic{font-size:3rem;margin-bottom:10px;}
+.tag-drive{display:inline-block;background:#e8f5e9;color:#2e7d32;font-size:.72rem;padding:2px 7px;border-radius:8px;margin-top:3px;}
+.av{background:#fff9c4;border-left:4px solid #f9a825;padding:10px 14px;border-radius:4px;font-size:.84rem;margin-bottom:12px;}
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#1565c0;color:#fff;padding:10px 20px;border-radius:8px;font-size:.87rem;display:none;z-index:9999;box-shadow:0 3px 12px rgba(0,0,0,.2);}
+#toast.err{background:#c62828;}
+</style>
+</head>
+<body>
+<header>
+  <h1>&#128227; Quadro de Anuncios &#8212; Congregacao Central SP (40600)</h1>
+  <a href="index.html">&#8592; Territorios</a>
+</header>
+<div class="toolbar">
+  <button id="btnPrev" onclick="navegar(-1)" disabled>&#8592; Anterior</button>
+  <span class="titulo" id="titAtual">Nenhum arquivo selecionado</span>
+  <span class="cont" id="contArq"></span>
+  <button id="btnNext" onclick="navegar(1)" disabled>Proximo &#8594;</button>
+</div>
+<div class="main">
+  <div class="cfg-box" id="cfgBox">
+    <h2>&#128279; Configurar pasta do Google Drive</h2>
+    <p>Cole o <strong>link de compartilhamento</strong> de uma pasta publica do Google Drive. Os arquivos PDF dessa pasta aparecao automaticamente aqui.<br><br>
+    <strong>Como tornar a pasta publica:</strong> No Drive, clique com botao direito na pasta > Compartilhar > Alterar para qualquer pessoa com o link > Visualizador.</p>
+    <div class="av">O Google Drive nao permite listar arquivos via link simples. Informe o <strong>ID da pasta</strong> e os <strong>IDs dos PDFs</strong> que quiser exibir (voce pode adicionar quantos quiser).</div>
+    <input type="text" id="inpNome" placeholder="Nome do documento (ex: Programa da Reuniao)">
+    <input type="text" id="inpId" placeholder="ID do arquivo no Google Drive (parte do link apos /d/)">
+    <div class="row">
+      <button class="b-prim" onclick="addArquivo()">&#43; Adicionar arquivo</button>
+      <button class="b-sec" onclick="toggleCfg()">Fechar configuracao</button>
+    </div>
+  </div>
+  <div class="lista-box" id="listaBox" style="display:none">
+    <h2>&#128196; Arquivos disponiveis <button class="b-sec" onclick="toggleCfg()" style="font-size:.77rem;padding:3px 9px;margin-left:10px">&#43; Adicionar</button></h2>
+    <div class="lista" id="lista"></div>
+  </div>
+  <div class="viewer-box" id="viewerBox">
+    <div class="empty">
+      <div class="ic">&#128196;</div>
+      <p>Adicione arquivos PDF do Google Drive e clique para visualizar.</p>
+    </div>
+  </div>
+</div>
+<div id="toast"></div>
+<script>
+var ARQUIVOS = [];
+var idxAtual = -1;
+
+function carregar(){
+  var s = localStorage.getItem('qa_arquivos');
+  if(s){try{ARQUIVOS=JSON.parse(s);}catch(e){ARQUIVOS=[];}}
+  renderLista();
+  if(ARQUIVOS.length>0){document.getElementById('cfgBox').style.display='none';document.getElementById('listaBox').style.display='block';abrirIdx(0);}
+}
+
+function salvarLocal(){localStorage.setItem('qa_arquivos',JSON.stringify(ARQUIVOS));}
+
+function addArquivo(){
+  var nome = document.getElementById('inpNome').value.trim();
+  var id = document.getElementById('inpId').value.trim();
+  if(!nome||!id){toast('Preencha nome e ID do arquivo.',true);return;}
+  // Extrair ID se o usuario colou o link completo
+  var m = id.match(//d/([a-zA-Z0-9_-]+)/);
+  if(m)id=m[1];
+  ARQUIVOS.push({nome:nome,id:id});
+  salvarLocal();
+  document.getElementById('inpNome').value='';
+  document.getElementById('inpId').value='';
+  document.getElementById('cfgBox').style.display='none';
+  document.getElementById('listaBox').style.display='block';
+  renderLista();
+  abrirIdx(ARQUIVOS.length-1);
+  toast('Arquivo adicionado!');
+}
+
+function remover(idx){
+  if(!confirm('Remover este arquivo da lista?'))return;
+  ARQUIVOS.splice(idx,1);
+  salvarLocal();
+  renderLista();
+  if(idx===idxAtual){idxAtual=-1;document.getElementById('viewerBox').innerHTML='<div class="empty"><div class="ic">&#128196;</div><p>Selecione um arquivo.</p></div>';}
+  if(ARQUIVOS.length===0){document.getElementById('listaBox').style.display='none';document.getElementById('cfgBox').style.display='block';}
+  atualizarNav();
+}
+
+function renderLista(){
+  var el=document.getElementById('lista');
+  if(ARQUIVOS.length===0){el.innerHTML='<p style="color:#aaa;font-size:.85rem">Nenhum arquivo adicionado ainda.</p>';return;}
+  el.innerHTML=ARQUIVOS.map(function(a,i){
+    return '<div class="item'+(i===idxAtual?' ativo':'')+'" onclick="abrirIdx('+i+')">'+
+      '<span class="ico">&#128196;</span>'+
+      '<div class="info">'+
+        '<div class="nome">'+a.nome+'</div>'+
+        '<div class="sub"><span class="tag-drive">Google Drive</span></div>'+
+      '</div>'+
+      '<span onclick="event.stopPropagation();remover('+i+')" style="margin-left:auto;cursor:pointer;color:#aaa;font-size:1.1rem;" title="Remover">&#10005;</span>'+
+    '</div>';
+  }).join('');
+}
+
+function abrirIdx(i){
+  if(i<0||i>=ARQUIVOS.length)return;
+  idxAtual=i;
+  var a=ARQUIVOS[i];
+  // URL de preview do Google Drive para PDF
+  var url='https://drive.google.com/file/d/'+a.id+'/preview';
+  document.getElementById('viewerBox').innerHTML='<iframe src="'+url+'" allow="autoplay" allowfullscreen></iframe>';
+  document.getElementById('titAtual').textContent=a.nome;
+  document.getElementById('contArq').textContent=(i+1)+' / '+ARQUIVOS.length;
+  renderLista();
+  atualizarNav();
+}
+
+function navegar(dir){
+  var novo=idxAtual+dir;
+  if(novo>=0&&novo<ARQUIVOS.length)abrirIdx(novo);
+}
+
+function atualizarNav(){
+  document.getElementById('btnPrev').disabled=idxAtual<=0;
+  document.getElementById('btnNext').disabled=idxAtual>=ARQUIVOS.length-1;
+}
+
+function toggleCfg(){
+  var c=document.getElementById('cfgBox');
+  c.style.display=c.style.display==='none'?'block':'none';
+}
+
+function toast(m,e){
+  var t=document.getElementById('toast');t.textContent=m;t.className=e?'err':'';t.style.display='block';
+  setTimeout(function(){t.style.display='none';},3500);
+}
+
+carregar();
+</script>
+</body>
+</html>
